@@ -1,24 +1,28 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { context } from './user-context';
+import { Link, useNavigate } from 'react-router-dom';
 const Header = () => {
     const { connected } = useContext(context);
+    const navigate = useNavigate();
+    
+    useEffect(() => { navigate("login") }, []);
     return <>
-        <div className='header-div'>
+        <header>
             <div>LOGO</div>
             <ol>
                 <li>
-                    {/* לנתב למסך לוגין כשלא מחובר */}
-                    <a href="">
+                    <Link to={"login"}>
                         {connected ? <>Log Out</> : <>Log In</>}
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="">
-                        Home
-                    </a>
+                    <Link to={"home"}>Home</Link>
+                </li>
+                <li>
+                    <Link to={"recipes"}>Recipes</Link>
                 </li>
             </ol>
-        </div>
+        </header >
     </>
 }
 

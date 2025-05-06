@@ -1,15 +1,24 @@
 import axios from "axios";
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { context } from "./user-context";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
-    const { setConnected } = useContext(context);
+    const { setConnected, setUser } = useContext(context);
+    const navigate = useNavigate();
     const loginUser = (UserName?: string, Password?: string) => {
         if (UserName && Password) {
             axios.post("http://localhost:8080/api/user/login", { UserName, Password }).
-                then(({ statusText }) => setConnected(statusText === 'OK'));
+                then(({ statusText, data }) => {
+                    setConnected(statusText === 'OK');
+                    setUser(data);
+                });
+            navigate("/home");
         }
     }
+    useEffect(() => {
+        setUser((prev: any) => ({ ...prev, Id: "0" }));
+    }, [])
     const inputNameRef = useRef<HTMLInputElement>(null);
     const inputPasswordRef = useRef<HTMLInputElement>(null);
     return <>
@@ -22,8 +31,8 @@ const Login = () => {
             <input type="password" placeholder="password" ref={inputPasswordRef} />
         </div>
         <button onClick={() => loginUser(inputNameRef.current?.value, inputPasswordRef.current?.value)}>Log In</button>
-        New to My-App? <a href="#" target="_blank">Sign In</a>
-        {/* לחיצה על הקישור תוביל למסך הרשמה */}
+        <br />
+        New to My-App? <Link to={"/signin"}>Sign In</Link>
     </>
 
 }
