@@ -1,13 +1,24 @@
-import { useState } from "react";
-
+import { useContext } from 'react';
+import { context } from './user-context';
 const Header = () => {
-    const [connected, SetConnected] = useState(false);
+    const { connected } = useContext(context);
     return <>
-        <div>logo</div>
-        <ol>
-            <li>{connected ? <>log out</> : <>log in</>}</li>
-            <button onClick={() => SetConnected(!connected)}>log</button>
-        </ol>
+        <div className='header-div'>
+            <div>LOGO</div>
+            <ol>
+                <li>
+                    {/* לנתב למסך לוגין כשלא מחובר */}
+                    <a href="">
+                        {connected ? <>Log Out</> : <>Log In</>}
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        Home
+                    </a>
+                </li>
+            </ol>
+        </div>
     </>
 }
 
