@@ -11,6 +11,7 @@ const Login = () => {
             axios.post("http://localhost:8080/api/user/login", { UserName, Password }).
                 then(({ statusText, data }) => {
                     setConnected(statusText === 'OK');
+                    sessionStorage.setItem("user",JSON.stringify(data));
                     setUser(data);
                 });
             navigate("/home");
@@ -32,7 +33,7 @@ const Login = () => {
         </div>
         <button onClick={() => loginUser(inputNameRef.current?.value, inputPasswordRef.current?.value)}>Log In</button>
         <br />
-        New to My-App? <Link to={"/signin"}>Sign In</Link>
+        New to Recipedia ? <Link to={"/signin"}>Sign In</Link>
     </>
 
 }

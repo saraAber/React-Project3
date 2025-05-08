@@ -1,29 +1,6 @@
 import axios from "axios";
 import { createContext, ReactElement, useEffect, useState } from "react";
-
-type Ingrident = {
-    Name: string,
-    Count: number,
-    Type: string
-};
-
-type Instruction = {
-    Id: number,
-    Name: string
-};
-
-type Recipe = {
-    Id: number,
-    Name: string,
-    Img: string,
-    Duration: number,
-    Difficulty: number,
-    Description: string,
-    Categoryid: number,
-    UserId: number,
-    Ingridents: Ingrident[],
-    Instructions: Instruction[]
-};
+import { Recipe } from "./recipe-model";
 
 type SystemRecipe = {
     recipes: Recipe[],

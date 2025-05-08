@@ -4,11 +4,15 @@ import { Link, useNavigate } from 'react-router-dom';
 const Header = () => {
     const { connected } = useContext(context);
     const navigate = useNavigate();
-    
-    useEffect(() => { navigate("login") }, []);
+
+    useEffect(() => {
+        if (sessionStorage.getItem("user") == "") {
+            navigate("login");
+        }
+    }, []);
     return <>
         <header>
-            <div>LOGO</div>
+            <div>Recipedia</div>
             <ol>
                 <li>
                     <Link to={"login"}>

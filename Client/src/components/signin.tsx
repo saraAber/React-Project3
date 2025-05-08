@@ -10,8 +10,10 @@ const SignIn = () => {
 
     const signInUser = (userDetails: typeof user) => {
         axios.post("http://localhost:8080/api/user/sighin", userDetails).
-            then(({ statusText }) => {
+            then(({ statusText, data }) => {
                 setConnected(statusText === 'OK');
+                sessionStorage.setItem("user", data);
+                setUser(data);
                 navigate("/home");
             });
     }

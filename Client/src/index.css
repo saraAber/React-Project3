@@ -8,6 +8,11 @@
   --main-color: rgb(50, 221, 248);
 }
 
-header{
-  background-color: chartreuse;
+header,header ol{
+  background-color: rgb(0, 255, 162);
+  display: flex;
+}
+header ol{
+  width: 90%;
+  justify-content: space-around;
 }

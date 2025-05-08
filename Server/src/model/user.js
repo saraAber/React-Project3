@@ -13,7 +13,8 @@ const User = sequelize.define('user', {
     },
     Password: {
         type: DataTypes.TEXT,
-        allowNull: false, 
+        allowNull: false,
+        
     }, 
     Name: {
         type: DataTypes.TEXT,
