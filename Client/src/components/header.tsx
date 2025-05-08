@@ -10,6 +10,7 @@ const Header = () => {
             navigate("login");
         }
     }, []);
+
     return <>
         <header>
             <div>Recipedia</div>

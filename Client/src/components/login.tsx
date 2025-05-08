@@ -11,7 +11,7 @@ const Login = () => {
             axios.post("http://localhost:8080/api/user/login", { UserName, Password }).
                 then(({ statusText, data }) => {
                     setConnected(statusText === 'OK');
-                    sessionStorage.setItem("user",JSON.stringify(data));
+                    sessionStorage.setItem("user", JSON.stringify(data));
                     setUser(data);
                 });
             navigate("/home");
@@ -19,6 +19,8 @@ const Login = () => {
     }
     useEffect(() => {
         setUser((prev: any) => ({ ...prev, Id: "0" }));
+        setConnected(false);
+        sessionStorage.removeItem("user");
     }, [])
     const inputNameRef = useRef<HTMLInputElement>(null);
     const inputPasswordRef = useRef<HTMLInputElement>(null);

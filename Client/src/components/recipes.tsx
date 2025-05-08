@@ -23,19 +23,18 @@ const Recipes = () => {
                         <li>duration : {r.Duration}</li>
                         <li>difficulty : {r.Difficulty}</li>
                     </ul>
-                    {connected && user.Id == r.UserId ?
+                    {connected && user.Id == r.UserId &&
                         <>
                             <button onClick={() => deleteRecipy(r.Id)}>delete</button>
+                            <br />
                             <Link to={"edit"}>edit</Link>
                         </>
-                        :
-                        <></>
                     }
                     <hr />
                 </li>
             )}
         </ol>
-        <Link to={"add"}>add a new recipy</Link>
+        {connected && <Link to={"add"}>add a new recipy</Link>}
         <Outlet />
     </>
 };

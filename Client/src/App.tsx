@@ -6,14 +6,12 @@ import RecipesProvider from './components/recipeis-context'
 
 function App() {
   return <>
-   
-      <RecipesProvider>
+    <RecipesProvider>
       <UserProvider>
         <Header />
         <Outlet />
-        </UserProvider>
-      </RecipesProvider>
-    
+      </UserProvider>
+    </RecipesProvider>
   </>
 }
 

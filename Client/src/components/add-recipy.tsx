@@ -11,7 +11,7 @@ const initRecipe: Recipe = {
     Duration: 60,
     Difficulty: 2,
     Description: "עוגה לשבועות",
-    Categoryid: 1,
+    Categoryid: 2,
     UserId: 5,
     Ingridents: [],
     Instructions: []
@@ -34,12 +34,12 @@ const AddRecipy = () => {
         if (field === "Duration" || field === "Difficulty" || field === "Categoryid") {
             setNewRecipy({ ...newRecipy, [field]: parseInt(value) });
         }
-        else if (field !== "Ingridents" && field !== "Instructions") {
-           
+        else if (field == "Ingridents" || field == "Instructions") {
+           const arrOf = value.split(",");
+            setNewRecipy({ ...newRecipy, [field]: arrOf });
         }
         else {
-            const arrOf = value.split(",");
-            setNewRecipy({ ...newRecipy, [field]: arrOf });
+            
         }
     }
 

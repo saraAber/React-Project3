@@ -8,11 +8,11 @@ const SignIn = () => {
     const [valid, setValid] = useState<boolean>(true);
     const navigate = useNavigate();
 
-    const signInUser = (userDetails: typeof user) => {
-        axios.post("http://localhost:8080/api/user/sighin", userDetails).
+    const signInUser = () => {
+        axios.post("http://localhost:8080/api/user/sighin", user).
             then(({ statusText, data }) => {
                 setConnected(statusText === 'OK');
-                sessionStorage.setItem("user", data);
+                sessionStorage.setItem("user",JSON.stringify(data));
                 setUser(data);
                 navigate("/home");
             });
@@ -43,7 +43,7 @@ const SignIn = () => {
             <label> tz : </label>
             <input type="text" placeholder="tz" onChange={({ target }) => setUser({ ...user, Tz: target.value })} />
         </div>
-        <button onClick={() => signInUser(user)}>Sign In</button>
+        <button onClick={signInUser}>Sign In</button>
     </>
 }
 export default SignIn;
