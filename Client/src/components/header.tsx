@@ -34,6 +34,9 @@ const Header = () => {
                 <li>
                     <Link to={"recipes"}>Recipes</Link>
                 </li>
+                <li>
+                    <Link to={"categories"}>Categories</Link>
+                </li>
             </ol>
         </header >
     </>

@@ -1,6 +1,5 @@
 import { createRoot } from 'react-dom/client'
 import './index.css'
-
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import SignIn from './components/signin'
 import Login from './components/login'
@@ -10,6 +9,8 @@ import Recipes from './components/recipes'
 import EditRecipy from './components/edit-recipy'
 import AddRecipy from './components/add-recipy'
 import FilterRecipes from './components/filter-recipes'
+import Categories from './components/categories'
+import AddCategory from './components/add-category'
 
 const allAppRouters = createBrowserRouter([
   {
@@ -23,6 +24,12 @@ const allAppRouters = createBrowserRouter([
           { path: "edit/:id", element: <EditRecipy /> },
           { path: "add", element: <AddRecipy /> },
           { path: "filter", element: <FilterRecipes /> }
+        ]
+      },
+      {
+        path: "categories", element: <Categories />,
+        children: [
+          { path: "add", element: <AddCategory /> }
         ]
       }
     ]

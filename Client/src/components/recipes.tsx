@@ -3,9 +3,11 @@ import { context } from "./user-context";
 import { recipeContext } from "./recipeis-context";
 import { Link, Outlet } from "react-router-dom";
 import axios from "axios";
+import { categoryContext } from "./categories-context";
 
 const Recipes = () => {
-    const { recipes, setRecipes } = useContext(recipeContext)
+    const { recipes, setRecipes } = useContext(recipeContext);
+    const { categories } = useContext(categoryContext);
     const { user, connected } = useContext(context);
 
     const deleteRecipy = (id: number) => {
@@ -31,20 +33,20 @@ const Recipes = () => {
                         <li>Difficulty : {r.Difficulty}</li>
                         <li>Description : {r.Description}</li>
                         <li>Difficulty level : {r.Difficulty}</li>
-                        <li>Category ID : {r.Categoryid}</li>
+                        <li>Category : {categories.find((cat) => cat.Id == r.Categoryid)?.Name}</li>
                         <li>Img : {r.Img}</li>
                         <li>
-                            Ingredients : 
+                            Ingredients :
                             <ul>
-                                {r.Ingridents.map(ri=>
+                                {r.Ingridents.map(ri =>
                                     <li key={ri.Count}>{ri.Count} {ri.Type} {ri.Name}</li>
                                 )}
                             </ul>
                         </li>
                         <li>
-                            Instructions : 
+                            Instructions :
                             <ul>
-                                {r.Instructions.map(ins=>
+                                {r.Instructions.map(ins =>
                                     <li key={ins.Id}>{ins.Name}</li>
                                 )}
                             </ul>

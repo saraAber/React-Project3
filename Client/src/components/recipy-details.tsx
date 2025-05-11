@@ -1,5 +1,7 @@
 import { useFieldArray, useForm } from "react-hook-form";
 import { Recipe } from "./recipe-model";
+import { useContext } from "react";
+import { categoryContext } from "./categories-context";
 
 type RecipeDetails = {
     recipyDetails: Recipe,
@@ -8,6 +10,7 @@ type RecipeDetails = {
 }
 
 const RecipyDetails = ({ recipyDetails, caption, saveChanges }: RecipeDetails) => {
+    const { categories } = useContext(categoryContext);
 
     const { register, handleSubmit, control, formState: { errors } } = useForm<Recipe>({
         values: recipyDetails
@@ -64,12 +67,23 @@ const RecipyDetails = ({ recipyDetails, caption, saveChanges }: RecipeDetails) =
                 {errors.Description && <small>{errors.Description.message}</small>}
             </div>
             <div>
-                <label>Categoryid: </label>
-                <input type="number" {...register("Categoryid", {
-                    valueAsNumber: true,
-                    required: "Category ID is required",
-                    min: { value: 1, message: "Category ID must be at least 1" }
-                })} />
+                <label>Category ID: </label>
+                <input
+                    type="number"
+                    list="categories"
+                    {...register("Categoryid", {
+                        valueAsNumber: true,
+                        required: "Category ID is required",
+                        min: { value: 1, message: "Category ID must be at least 1" }
+                    })}
+                />
+                <datalist id="categories">
+                    {categories.map(category => (
+                        <option key={category.Id} value={category.Id}>
+                            {category.Name}
+                        </option>
+                    ))}
+                </datalist>
                 {errors.Categoryid && <small>{errors.Categoryid.message}</small>}
             </div>
 
@@ -107,16 +121,16 @@ const RecipyDetails = ({ recipyDetails, caption, saveChanges }: RecipeDetails) =
             ))}
             <button type="button" onClick={() => appendIngredient({ Name: '', Count: 0, Type: '' })}>Add Ingredient</button>
 
-                        <h2>Instructions</h2>
+            <h2>Instructions</h2>
             {instructionFields.map((field, index) => (
                 <div key={field.id}>
                     <label>Instruction Name: </label>
                     <input
                         {...register(`Instructions.${index}.Name`, { required: "Instruction name is required" })}
-                        defaultValue={field.Name} 
+                        defaultValue={field.Name}
                     />
                     {errors.Instructions?.[index]?.Name && <small>{errors.Instructions[index].Name.message}</small>}
-                    
+
                     <button type="button" onClick={() => removeInstruction(index)}>Remove</button>
                 </div>
             ))}
