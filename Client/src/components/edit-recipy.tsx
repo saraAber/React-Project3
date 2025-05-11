@@ -12,8 +12,8 @@ const EditRecipy = () => {
     const [recipyDetails, setRecipyDetails] = useState<Recipe>(initRecipe);
     const navigate = useNavigate();
 
-    const editRecipy = () => {
-        axios.post("http://localhost:8080/api/recipe/edit", recipyDetails)
+    const editRecipy = (recipe: Recipe) => {
+        axios.post("http://localhost:8080/api/recipe/edit", recipe)
             .then(({ data }) => {
                 setRecipyDetails(data);
                 const updateRecipesArr = recipes.map((recipe) => {
@@ -37,8 +37,7 @@ const EditRecipy = () => {
     }, [])
 
     return <>
-        <RecipyDetails {...{ recipyDetails, setRecipyDetails }} />
-        <button onClick={editRecipy}>edit</button>
+        <RecipyDetails {...{ recipyDetails, caption: "edit", saveChanges: editRecipy }} />
     </>
 }
 export default EditRecipy;

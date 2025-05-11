@@ -19,7 +19,7 @@ export type Recipe = {
     Categoryid: number,
     UserId: number,
     Ingridents: Ingrident[],
-    Instructions: string[]
+    Instructions: Instruction[]
 };
 
 export const initRecipe: Recipe = {

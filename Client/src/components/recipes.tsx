@@ -29,10 +29,26 @@ const Recipes = () => {
                         <li>Recipe name : {r.Name}</li>
                         <li>Duration : {r.Duration}</li>
                         <li>Difficulty : {r.Difficulty}</li>
-                        {/* <li>Description : {r.Description}</li>
+                        <li>Description : {r.Description}</li>
                         <li>Difficulty level : {r.Difficulty}</li>
                         <li>Category ID : {r.Categoryid}</li>
-                        <li>Img : {r.Img}</li> */}
+                        <li>Img : {r.Img}</li>
+                        <li>
+                            Ingredients : 
+                            <ul>
+                                {r.Ingridents.map(ri=>
+                                    <li key={ri.Count}>{ri.Count} {ri.Type} {ri.Name}</li>
+                                )}
+                            </ul>
+                        </li>
+                        <li>
+                            Instructions : 
+                            <ul>
+                                {r.Instructions.map(ins=>
+                                    <li key={ins.Id}>{ins.Name}</li>
+                                )}
+                            </ul>
+                        </li>
                     </ul>
                     {connected && user.Id == r.UserId &&
                         <>

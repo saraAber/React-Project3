@@ -14,20 +14,19 @@ const AddRecipy = () => {
     const navigate = useNavigate()
 
     const addRecipy = (recipy: any) => {
-        recipy.UserId = user.Id;
+        recipy = { ...recipy, UserId: user.Id };
         delete recipy.Id;
         axios.post("http://localhost:8080/api/recipe", recipy)
             .then(({ data }) => {
-                setNewRecipy(data)
-                setRecipes([...recipes, newRecipy]);
+                setNewRecipy(data);
+                setRecipes([...recipes, data]);
                 navigate("/recipes");
             })
             .catch((err) => console.error(err));
     }
 
     return <>
-        <RecipyDetails {...{ recipyDetails: newRecipy, setRecipyDetails: setNewRecipy }} />
-        <button onClick={() => addRecipy(newRecipy)}>add</button>
+        <RecipyDetails {...{ recipyDetails: newRecipy,caption: "add", saveChanges: addRecipy }} />
     </>
 }
 export default AddRecipy;    
