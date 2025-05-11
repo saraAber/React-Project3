@@ -2,12 +2,20 @@ import { useContext, useEffect } from 'react';
 import { context } from './user-context';
 import { Link, useNavigate } from 'react-router-dom';
 const Header = () => {
-    const { connected } = useContext(context);
+    const { setUser, connected, setConnected } = useContext(context);
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (sessionStorage.getItem("user") == "") {
+        const loggedInUser = sessionStorage.getItem("user");
+        if (!loggedInUser) {
             navigate("login");
+        }
+        else {
+            if (loggedInUser !== null) {
+                const userDetails = JSON.parse(loggedInUser);
+                setUser(userDetails);
+                setConnected(true);
+            }
         }
     }, []);
 

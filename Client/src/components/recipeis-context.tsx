@@ -1,23 +1,10 @@
 import axios from "axios";
 import { createContext, ReactElement, useEffect, useState } from "react";
-import { Recipe } from "./recipe-model";
+import { initRecipe, Recipe } from "./recipe-model";
 
 type SystemRecipe = {
     recipes: Recipe[],
     setRecipes: Function
-};
-
-const initRecipe: Recipe = {
-    Id: 9,
-    Name: "כדורי שוקולד",
-    Img: "גבינה.png",
-    Duration: 60,
-    Difficulty: 2,
-    Description: "עוגה לשבועות",
-    Categoryid: 1,
-    UserId: 5,
-    Ingridents: [],
-    Instructions: []
 };
 
 const initSRecipe: SystemRecipe = {

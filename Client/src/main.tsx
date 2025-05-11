@@ -9,6 +9,7 @@ import Home from './components/home'
 import Recipes from './components/recipes'
 import EditRecipy from './components/edit-recipy'
 import AddRecipy from './components/add-recipy'
+import FilterRecipes from './components/filter-recipes'
 
 const allAppRouters = createBrowserRouter([
   {
@@ -19,8 +20,9 @@ const allAppRouters = createBrowserRouter([
       {
         path: "recipes", element: <Recipes />,
         children: [
-          { path: "edit", element: <EditRecipy /> },
-          { path: "add", element: <AddRecipy /> }
+          { path: "edit/:id", element: <EditRecipy /> },
+          { path: "add", element: <AddRecipy /> },
+          { path: "filter", element: <FilterRecipes /> }
         ]
       }
     ]

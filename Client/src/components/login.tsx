@@ -22,15 +22,16 @@ const Login = () => {
         setConnected(false);
         sessionStorage.removeItem("user");
     }, [])
+    
     const inputNameRef = useRef<HTMLInputElement>(null);
     const inputPasswordRef = useRef<HTMLInputElement>(null);
     return <>
         <div>
-            <label>enter your name :</label>
+            <label>Enter your nickname : </label>
             <input type="text" placeholder="name" ref={inputNameRef} />
         </div>
         <div>
-            <label>enter your password :</label>
+            <label>Enter your password : </label>
             <input type="password" placeholder="password" ref={inputPasswordRef} />
         </div>
         <button onClick={() => loginUser(inputNameRef.current?.value, inputPasswordRef.current?.value)}>Log In</button>
