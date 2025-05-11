@@ -3,6 +3,7 @@ import { Category, initCategory } from "./category-model";
 import { categoryContext } from "./categories-context";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Button, TextField } from "@mui/material";
 
 const AddCategory = () => {
     const [newCategory, setNewCategory] = useState<Category>(initCategory);
@@ -23,15 +24,15 @@ const AddCategory = () => {
     }
 
     return <>
-            <div>
-                <label htmlFor="category">Category name : </label>
-                <input
-                    type="text"
-                    name="category"
-                    onBlur={({ target }) => saveChanges(target.value)}
-                />
-            </div>
-            <button onClick={addCategory}>add</button>
+        <div>
+            <TextField
+                id="outlined-basic"
+                label="Category name"
+                variant="outlined"
+                onBlur={({ target }) => saveChanges(target.value)}
+            />
+        </div>
+        <Button variant="outlined" onClick={addCategory}>add</Button>
     </>
 }
 export default AddCategory;

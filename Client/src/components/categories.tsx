@@ -2,20 +2,41 @@ import { useContext } from "react";
 import { context } from "./user-context";
 import { Link, Outlet } from "react-router-dom";
 import { categoryContext } from "./categories-context";
+import { Button, Divider, List, ListItem, ListItemText } from "@mui/material";
+
+const style = {
+    p: 0,
+    width: '100%',
+    maxWidth: 360,
+    borderRadius: 2,
+    border: '1px solid',
+    borderColor: 'divider',
+    backgroundColor: 'background.paper',
+    margin: "0 auto"
+};
 
 const Categories = () => {
     const { connected } = useContext(context);
     const { categories } = useContext(categoryContext);
     return <>
-        {connected && <Link to={"add"}>add a new category</Link>}
+        {connected && 
+         <Button
+            variant="outlined"
+            component={Link}
+            to="add"
+        >
+           Add a new category
+        </Button>}
         <Outlet />
-        <ol>
-            {categories.map(cat =>
-                <li key={cat.Id}>
-                    {cat.Name}
-                </li>
+        <List sx={style} aria-label="mailbox folders">
+            {categories.map(cat => <>
+                <ListItem key={cat.Id}>
+                    <ListItemText primary={cat.Name} />
+                </ListItem>
+                <Divider component="li" />
+            </>
             )}
-        </ol>
+        </List>
     </>
 }
 export default Categories;

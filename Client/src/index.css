@@ -5,14 +5,11 @@
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  --main-color: rgb(50, 221, 248);
+  --main-color: rgb(248, 50, 212);
 }
 
-header,header ol{
-  background-color: rgb(0, 255, 162);
+header{
+  background-color: rgb(25,118,210);
   display: flex;
-}
-header ol{
-  width: 90%;
-  justify-content: space-around;
+  margin: 0 0 100px 0;
 }
